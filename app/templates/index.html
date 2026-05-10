@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather App</title>
+</head>
+<body>
+
+    <h1>Weather Forecast System</h1>
+
+    <form action="/weather" method="post">
+
+        <input
+            type="text"
+            name="city"
+            placeholder="Enter city"
+        >
+
+        <button type="submit">
+            Search
+        </button>
+
+    </form>
+    <a href="/history">
+    View Search History
+</a>
+    {% if weather %}
+
+    {% if weather.error %}
+
+        <p>{{ weather.error }}</p>
+
+    {% else %}
+
+        <h2>{{ weather.city }}</h2>
+
+        <p>Temperature: {{ weather.temperature }} °C</p>
+
+        <p>Humidity: {{ weather.humidity }}%</p>
+
+        <p>Description: {{ weather.description }}</p>
+
+        <p>Wind Speed: {{ weather.wind_speed }} m/s</p>
+
+        <img src="https://openweathermap.org/img/wn/{{ weather.icon }}@2x.png">
+
+    {% endif %}
+
+{% endif %}
+
+</body>
+</html>
