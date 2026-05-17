@@ -1,3 +1,5 @@
+from collections import defaultdict
+from datetime import datetime
 import requests
 from requests import api
 
@@ -60,3 +62,56 @@ class WeatherService:
             return {
                 "error": "Invalid API response"
             }
+
+    def get_forecast(self, city: str):
+
+        forecast_url = "https://api.openweathermap.org/data/2.5/forecast"
+
+        params = {
+        "q": city,
+        "appid": self.api_key,
+        "units": "metric"
+    }
+
+        response = requests.get(forecast_url, params=params, timeout=5)
+        response.raise_for_status()
+
+        data = response.json()
+
+        today = []
+        daily_map = defaultdict(list)
+
+        for item in data["list"]:
+
+            dt = datetime.strptime(item["dt_txt"], "%Y-%m-%d %H:%M:%S")
+
+            # TODAY (next 24h, by hour)
+            today.append({
+                "time": dt.strftime("%H:%M"),
+                "temp": item["main"]["temp"],
+                "icon": item["weather"][0]["icon"]
+            })
+
+            # GROUP BY DAY
+            day_key = dt.strftime("%Y-%m-%d")
+
+            daily_map[day_key].append(item)
+
+        daily = []
+
+        for day, items in daily_map.items():
+
+            temps = [i["main"]["temp"] for i in items]
+
+            daily.append({
+                "date": day,
+                "min": min(temps),
+                "max": max(temps),
+                "icon": items[0]["weather"][0]["icon"],
+                "description": items[0]["weather"][0]["description"]
+            })
+
+        return {
+            "today": today[:8],   # limit hours
+            "daily": daily[:5]
+        }

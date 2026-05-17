@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Forecast</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="hero">
+
+    <div class="hero-left">
+        <h1>{{ city }}</h1>
+        <p>5-Day Forecast</p>
+    </div>
+
+    <div class="hero-right">
+        <div class="temp-card">
+            <img src="https://openweathermap.org/img/wn/{{ forecasts[0].icon }}@2x.png">
+            <h2>{{ forecasts[0].temperature }}°C</h2>
+            <p>{{ forecasts[0].description }}</p>
+        </div>
+    </div>
+
+</div>
+
+<div class="container">
+
+    <h2>Weekly Forecast</h2>
+
+    <div class="forecast-row">
+
+        {% for day in forecasts %}
+
+        <div class="forecast-card">
+
+            <img src="https://openweathermap.org/img/wn/{{ day.icon }}@2x.png">
+
+            <h3>{{ day.date }}</h3>
+
+            <p>{{ day.temperature }}°C</p>
+
+            <span>{{ day.description }}</span>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

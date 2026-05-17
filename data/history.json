@@ -1,65 +1,72 @@
 [
     {
         "city": "Nur-Sultan",
-        "temperature": 10.97,
-        "humidity": 32,
+        "temperature": 13.97,
         "description": "clear sky",
-        "wind_speed": 4,
-        "icon": "01d",
-        "searched_at": "2026-05-10 19:36"
-    },
-    {
-        "city": "Moscow",
-        "temperature": 12.7,
-        "humidity": 44,
-        "description": "overcast clouds",
-        "wind_speed": 4.62,
-        "icon": "04d",
-        "searched_at": "2026-05-10 19:36"
-    },
-    {
-        "city": "Moscow",
-        "temperature": 12.55,
-        "humidity": 44,
-        "description": "overcast clouds",
-        "wind_speed": 4.31,
-        "icon": "04d",
-        "searched_at": "2026-05-10 19:46"
-    },
-    {
-        "city": "Nur-Sultan",
-        "temperature": 10.97,
-        "humidity": 32,
-        "description": "clear sky",
-        "wind_speed": 4,
-        "icon": "01d",
-        "searched_at": "2026-05-10 19:46"
-    },
-    {
-        "city": "Nur-Sultan",
-        "temperature": 10.97,
-        "humidity": 32,
-        "description": "clear sky",
-        "wind_speed": 4,
         "icon": "01n",
-        "searched_at": "2026-05-10 19:50"
+        "searched_at": "2026-05-17 23:12"
+    },
+    {
+        "city": "Nur-Sultan",
+        "temperature": 13.97,
+        "description": "clear sky",
+        "icon": "01n",
+        "searched_at": "2026-05-17 23:12"
+    },
+    {
+        "city": "Nur-Sultan",
+        "temperature": 13.97,
+        "description": "clear sky",
+        "icon": "01n",
+        "searched_at": "2026-05-17 23:14"
     },
     {
         "city": "Brazil",
-        "temperature": 17.57,
-        "humidity": 49,
-        "description": "clear sky",
-        "wind_speed": 3.09,
-        "icon": "01d",
-        "searched_at": "2026-05-10 19:50"
+        "temperature": 27.61,
+        "description": "few clouds",
+        "icon": "02d",
+        "searched_at": "2026-05-17 23:14"
     },
     {
-        "city": "Madrid",
-        "temperature": 13.1,
-        "humidity": 75,
-        "description": "broken clouds",
-        "wind_speed": 6.69,
-        "icon": "04d",
-        "searched_at": "2026-05-10 20:02"
+        "city": "Brazil",
+        "temperature": 27.61,
+        "description": "few clouds",
+        "icon": "02d",
+        "searched_at": "2026-05-17 23:17"
+    },
+    {
+        "city": "Brazil",
+        "temperature": 27.61,
+        "description": "few clouds",
+        "icon": "02d",
+        "searched_at": "2026-05-17 23:18"
+    },
+    {
+        "city": "Nur-Sultan",
+        "temperature": 13.97,
+        "description": "clear sky",
+        "icon": "01n",
+        "searched_at": "2026-05-17 23:18"
+    },
+    {
+        "city": "Nur-Sultan",
+        "temperature": 13.97,
+        "description": "clear sky",
+        "icon": "01n",
+        "searched_at": "2026-05-17 23:19"
+    },
+    {
+        "city": "Moscow",
+        "temperature": 17.42,
+        "description": "moderate rain",
+        "icon": "10n",
+        "searched_at": "2026-05-17 23:22"
+    },
+    {
+        "city": "Nur-Sultan",
+        "temperature": 12.97,
+        "description": "clear sky",
+        "icon": "01n",
+        "searched_at": "2026-05-17 23:27"
     }
 ]

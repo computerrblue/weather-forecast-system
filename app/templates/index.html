@@ -1,51 +1,132 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Weather App</title>
+    <meta charset="UTF-8">
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
+
 <body>
 
-    <h1>Weather Forecast System</h1>
+    <div class="navbar">
+        <div>🌤 Weather App</div>
+        <div>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
 
-    <form action="/weather" method="post">
+    <div class="container">
 
-        <input
-            type="text"
-            name="city"
-            placeholder="Enter city"
-        >
+        <section class="search">
+            <form action="/weather" method="post">
+                <input type="text" name="city" placeholder="Search city...">
+                <button type="submit">Search</button>
+            </form>
+        </section>
 
-        <button type="submit">
-            Search
-        </button>
+        {% if weather %}
 
-    </form>
-    <a href="/history">
-    View Search History
-</a>
-    {% if weather %}
+        <section class="hero">
 
-    {% if weather.error %}
+            <div class="hero-left">
+                <h1>{{ weather.city }}</h1>
+                <p>{{ weather.description }}</p>
 
-        <p>{{ weather.error }}</p>
+                <div class="hero-meta">
+                    <p>🌬 {{ weather.wind_speed }} m/s</p>
+                    <p>💧 {{ weather.humidity }}%</p>
+                </div>
+            </div>
 
-    {% else %}
+            <div class="hero-right">
+                <div class="temp-card">
+                    <img src="https://openweathermap.org/img/wn/{{ weather.icon }}@2x.png">
+                    <h2>{{ weather.temperature }}°C</h2>
+                </div>
+            </div>
 
-        <h2>{{ weather.city }}</h2>
+        </section>
 
-        <p>Temperature: {{ weather.temperature }} °C</p>
+        {% endif %}
 
-        <p>Humidity: {{ weather.humidity }}%</p>
+        {% if forecasts %}
 
-        <p>Description: {{ weather.description }}</p>
+        <section class="hourly">
 
-        <p>Wind Speed: {{ weather.wind_speed }} m/s</p>
+            <h2>Today</h2>
 
-        <img src="https://openweathermap.org/img/wn/{{ weather.icon }}@2x.png">
+            <div class="hourly-row">
 
-    {% endif %}
 
-{% endif %}
+                {% for f in forecasts.today %}
+
+                <div class="hour-card">
+                    <p>{{ f.time }}</p>
+                    <img src="https://openweathermap.org/img/wn/{{ f.icon }}@2x.png">
+                    <p>{{ f.temp }}°C</p>
+                </div>
+
+                {% endfor %}
+
+            </div>
+        </section>
+
+        <section class="weekly">
+
+            <h2>5 Day Forecast</h2>
+
+            {% for f in forecasts.daily %}
+
+            <div class="day-card">
+
+                <div>
+                    <h3>{{ f.date }}</h3>
+                    <p>{{ f.description }}</p>
+                </div>
+
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <img src="https://openweathermap.org/img/wn/{{ f.icon }}@2x.png" width="50">
+                    <strong>{{ f.max }}°C / {{ f.min }}°C</strong>
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </section>
+
+        {% endif %}
+
+        <section class="history" id="history">
+
+            <h2>Recent Search History</h2>
+            <div class="history-row">
+
+                {% for item in history|reverse %}
+
+                <div class="history-card">
+
+                    <h3>{{ item.city }}</h3>
+
+                    <img src="https://openweathermap.org/img/wn/{{ item.icon }}@2x.png">
+
+                    <p>{{ item.temperature }}°C</p>
+
+                    <p style="font-size:12px; opacity:0.6;">
+                        {{ item.searched_at }}
+                    </p>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+    </div>
 
 </body>
+
 </html>

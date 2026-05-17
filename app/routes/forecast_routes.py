@@ -1,19 +1,22 @@
 from fastapi import APIRouter, Request
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
+from dotenv import load_dotenv
+import os
 
-from app.services.file_service import FileService
+from requests import api
+from app.services.weather_service import WeatherService
 
 
 router = APIRouter()
-
+load_dotenv()
+api_key = os.getenv("API_KEY")
 templates = Jinja2Templates(directory="app/templates")
 
-history_service = FileService("data/history.json")
+weather_service = WeatherService(api_key=api_key)
 
-
-@router.get("/history")
-def history_page(request: Request):
+@router.get("/forecast/{city}")
+def forecast_page(request: Request, city: str):
 
     if "user" not in request.session:
 
@@ -22,13 +25,14 @@ def history_page(request: Request):
             status_code=302
         )
 
-    history = history_service.load_json()
+    forecasts = weather_service.get_forecast(city)
 
     return templates.TemplateResponse(
         request=request,
-        name="history.html",
+        name="forecast.html",
         context={
             "username": request.session["user"],
-            "history": history
+            "city": city,
+            "forecasts": forecasts
         }
     )

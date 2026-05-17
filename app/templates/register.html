@@ -1,0 +1,32 @@
+<form action="/register" method="post">
+
+    <input
+        type="text"
+        name="username"
+        placeholder="Username"
+    >
+
+    <input
+        type="password"
+        name="password"
+        placeholder="Password"
+    >
+
+    <button type="submit">
+        Register
+    </button>
+
+</form>
+
+
+{% if result %}
+
+    {% if result.error %}
+        <p>{{ result.error }}</p>
+    {% endif %}
+
+    {% if result.success %}
+        <p>{{ result.success }}</p>
+    {% endif %}
+
+{% endif %}

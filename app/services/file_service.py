@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-
+from datetime import datetime
 
 class FileService:
 
@@ -33,11 +33,20 @@ class FileService:
         except Exception as error:
             print(f"Error saving file: {error}")
 
-
     def append_history(self, weather_data):
 
         data = self.load_json()
 
-        data.append(weather_data)
+        enriched = {
+            "city": weather_data["city"],
+            "temperature": weather_data["temperature"],
+            "description": weather_data["description"],
+            "icon": weather_data["icon"],
+            "searched_at": datetime.now().strftime("%Y-%m-%d %H:%M")
+    }
+
+        data.append(enriched)
+
+        data = data[-10:]
 
         self.save_json(data)
