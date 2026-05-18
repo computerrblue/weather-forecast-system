@@ -11,13 +11,6 @@
         "temperature": 13.97,
         "description": "clear sky",
         "icon": "01n",
-        "searched_at": "2026-05-17 23:12"
-    },
-    {
-        "city": "Nur-Sultan",
-        "temperature": 13.97,
-        "description": "clear sky",
-        "icon": "01n",
         "searched_at": "2026-05-17 23:14"
     },
     {
@@ -68,5 +61,12 @@
         "description": "clear sky",
         "icon": "01n",
         "searched_at": "2026-05-17 23:27"
+    },
+    {
+        "city": "Nur-Sultan",
+        "temperature": 22.97,
+        "description": "clear sky",
+        "icon": "01d",
+        "searched_at": "2026-05-18 17:11"
     }
 ]

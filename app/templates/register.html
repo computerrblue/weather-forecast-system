@@ -1,32 +1,77 @@
-<form action="/register" method="post">
+<!DOCTYPE html>
+<html lang="en">
 
-    <input
-        type="text"
-        name="username"
-        placeholder="Username"
-    >
+<head>
 
-    <input
-        type="password"
-        name="password"
-        placeholder="Password"
-    >
+    <meta charset="UTF-8">
+    <title>Register</title>
 
-    <button type="submit">
-        Register
-    </button>
+    <link rel="stylesheet" href="/static/style.css">
 
-</form>
+</head>
 
+<body class="auth-body">
 
-{% if result %}
+    <div class="auth-wrapper">
 
-    {% if result.error %}
-        <p>{{ result.error }}</p>
-    {% endif %}
+        <div class="auth-card">
 
-    {% if result.success %}
-        <p>{{ result.success }}</p>
-    {% endif %}
+            <div class="auth-header">
+                <h1>🚀 Create Account</h1>
+                <p>Join your personal weather dashboard</p>
+            </div>
 
-{% endif %}
+            <form action="/register" method="post" class="auth-form">
+
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+                    required
+                >
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    required
+                >
+
+                <button type="submit">
+                    Register
+                </button>
+
+            </form>
+
+            {% if result %}
+
+                {% if result.error %}
+
+                    <div class="error-box">
+                        {{ result.error }}
+                    </div>
+
+                {% endif %}
+
+                {% if result.success %}
+
+                    <div class="success-box">
+                        {{ result.success }}
+                    </div>
+
+                {% endif %}
+
+            {% endif %}
+
+            <p class="auth-switch">
+                Already have an account?
+                <a href="/login">Login</a>
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

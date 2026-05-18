@@ -36,8 +36,26 @@ def home(request: Request):
 
 @router.post("/weather")
 def get_weather(request: Request, city: str = Form(...)):
+    if "user" not in request.session:
 
+        return RedirectResponse(
+            url="/login",
+            status_code=302
+        )
     weather = weather_service.get_current_weather(city=city)
+    if "error" in weather:
+
+        return templates.TemplateResponse(
+        request=request,
+        name="index.html",
+        context={
+            "weather": weather,
+            "forecasts": [],
+            "history": history_service.load_json()
+        }
+    )
+
+
     forecasts = weather_service.get_forecast(city)
 
     weather["searched_at"] = datetime.now().strftime("%Y-%m-%d %H:%M")

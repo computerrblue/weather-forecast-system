@@ -17,7 +17,8 @@ class FileService:
             with open(self.file_path, "r", encoding="utf-8") as file:
                 return json.load(file)
 
-        except json.JSONDecodeError:
+        except json.JSONDecodeError as error:
+            print(f"JSON ERROR: {error}")
             return []
 
         except FileNotFoundError:

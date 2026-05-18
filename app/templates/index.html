@@ -24,6 +24,13 @@
                 <button type="submit">Search</button>
             </form>
         </section>
+        {% if weather and weather.error %}
+
+        <div class="error-box">
+            {{ weather.error }}
+        </div>
+
+        {% endif %}
 
         {% if weather %}
 
